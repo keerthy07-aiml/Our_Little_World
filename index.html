@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Little World 🌸 | Best Friends, Countless Memories, One Beautiful Story</title>
+  <meta name="description" content="A magical friendship diary and memory scrapbook for our inseparable gang — Keerthana, Vinothini, Rifana, Kavipriya, Vaithee, Subiii & Kaviiii. Studio Ghibli inspired scenery, school memories, funny moments, and our heartfelt promise.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+
+  <!-- Floating Falling Flower Petals Canvas -->
+  <canvas id="petal-canvas"></canvas>
+
+  <!-- ========================================================================
+       SECTION 3: FIRST SCREEN — “NEE ENNAKU YAARU?” 😂💗 (FULLSCREEN WELCOME)
+       ======================================================================== -->
+  <div id="welcome-screen">
+    <div class="welcome-card" id="welcome-card">
+      <div class="welcome-tape-left"></div>
+      <div class="welcome-tape-right"></div>
+      
+      <div class="welcome-badge">🌸 Friendship Entry Gate</div>
+      <h1 class="welcome-title">Oiiiii! 🌸 First, tell me one thing…</h1>
+      <div class="welcome-question">Nee ennaku yaaru? 👀💗</div>
+      <p class="welcome-subtitle">Correct-ah choose pannu… un character enakku theriyum! 😂</p>
+
+      <!-- Six Clickable Nickname Options -->
+      <div class="nickname-grid" role="radiogroup" aria-label="Select who you are to me">
+        <button type="button" class="nickname-btn" data-key="thango" data-label="Thangoooo 🥹💗">
+          <span>Thangoooo 🥹💗</span>
+          <span class="opt-badge">Option 1</span>
+        </button>
+
+        <button type="button" class="nickname-btn" data-key="chello" data-label="Chelloooo 🐣💕">
+          <span>Chelloooo 🐣💕</span>
+          <span class="opt-badge">Option 2</span>
+        </button>
+
+        <button type="button" class="nickname-btn" data-key="pattu" data-label="Patttuuu 🤏😂">
+          <span>Patttuuu 🤏😂</span>
+          <span class="opt-badge">Option 3</span>
+        </button>
+
+        <button type="button" class="nickname-btn" data-key="bestie" data-label="Bestieeee 👯‍♀️🌷">
+          <span>Bestieeee 👯‍♀️🌷</span>
+          <span class="opt-badge">Option 4</span>
+        </button>
+
+        <button type="button" class="nickname-btn" data-key="eruma" data-label="Erumaaa 🐃🤣">
+          <span>Erumaaa 🐃🤣</span>
+          <span class="opt-badge">Option 5</span>
+        </button>
+
+        <button type="button" class="nickname-btn" data-key="darling" data-label="Darlinggethadha 😭💋">
+          <span>Darlinggethadha 😭💋</span>
+          <span class="opt-badge">Option 6</span>
+        </button>
+      </div>
+
+      <!-- Speech Bubble Reaction -->
+      <div class="reaction-container" id="reaction-container">
+        <div class="speech-bubble" id="speech-bubble" style="display: none;">
+          <div class="speech-avatar" id="speech-avatar">🌸</div>
+          <div id="speech-text">Pick an option above to unlock the gate! ✨</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="welcome-actions">
+        <button type="button" class="btn-primary" id="btn-enter" style="display: none;">
+          <span>Seri, vaa polam! 😂💗</span>
+        </button>
+        <button type="button" class="change-answer-link" id="btn-change-answer" style="display: none;">
+          Change my answer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SECTION 5: STICKY NAVIGATION BAR
+       ======================================================================== -->
+  <nav id="navbar">
+    <div class="container nav-wrapper">
+      <a href="#home" class="nav-brand">
+        <span>🌸</span> Our Little World
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#our-story" class="nav-link">Our Story</a></li>
+        <li><a href="#schooldays" class="nav-link">Our Gang</a></li>
+        <li><a href="#gallery" class="nav-link">Memory Gallery</a></li>
+        <li><a href="#timeline" class="nav-link">Timeline</a></li>
+        <li><a href="#friendship-letter" class="nav-link">Letter</a></li>
+        <li><a href="#promise" class="nav-link">Our Promise</a></li>
+      </ul>
+
+      <!-- Action items: Music Player & Hamburger -->
+      <div class="nav-actions">
+        <div class="music-widget" id="music-widget" title="Click to play/pause our friendship melody">
+          <button type="button" class="music-toggle-btn" id="music-toggle-btn" aria-label="Toggle background music">
+            <span id="music-icon">♫</span>
+          </button>
+          <span class="music-label">Our little melody</span>
+          <div class="music-bars">
+            <div class="music-bar"></div>
+            <div class="music-bar"></div>
+            <div class="music-bar"></div>
+          </div>
+        </div>
+
+        <button type="button" class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Background Audio Element -->
+  <audio id="bg-audio" preload="auto" loop>
+    <source src="music.mp3" type="audio/mpeg">
+    <source src="music.wav" type="audio/wav">
+  </audio>
+
+  <!-- ========================================================================
+       SECTION 4: HERO SECTION — TRANSITION TO MAIN HOMEPAGE 🌷
+       ======================================================================== -->
+  <header id="home" class="hero-section">
+    <div class="hero-background-art"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-welcome-badge" id="hero-dynamic-badge">
+          <span>✨</span> Welcome inside, Bestie! 👯‍♀️💗
+        </div>
+
+        <h1 class="hero-title">Welcome to Our Little World 🌸</h1>
+        <div class="hero-tagline">Best Friends, Countless Memories, One Beautiful Story.</div>
+        
+        <p class="hero-subtitle" id="hero-dynamic-subtitle">
+          Un nickname select pannita… ippo namma memories-kulla polama? 🥹💗
+        </p>
+
+        <div class="hero-quote-card">
+          “Some of the best memories begin with a simple hello…”
+        </div>
+
+        <div class="hero-buttons">
+          <a href="#our-story" class="btn-primary" id="btn-hero-story">
+            <span>🌸 Let's Start Our Story ♡</span>
+          </a>
+          <a href="#gallery" class="btn-secondary" id="btn-hero-gallery">
+            <span>📸 Explore Our Memories</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       SECTION 7: OUR STORY — THE FRIENDSHIP SCRAPBOOK 📖
+       ======================================================================== -->
+  <section id="our-story" class="story-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">📖 The Scrapbook</span>
+        <h2>Every Little Moment Became a Memory ✨</h2>
+        <p>Not every beautiful story needs a grand beginning. Sometimes, it starts with our crazy gang, a classroom, and a thousand little moments.</p>
+      </div>
+
+      <div class="scrapbook-grid">
+        <!-- Chapter 1 -->
+        <article class="scrapbook-card" data-chapter="1">
+          <div class="card-washi pink"></div>
+          <div class="card-photo-frame">
+            <img src="images/school-trio.png" alt="Where It All Began" loading="lazy">
+          </div>
+          <span class="card-badge c1">Chapter 01</span>
+          <h3 class="card-title">Where It All Began 🌱</h3>
+          <p class="card-desc">11th Standard — Same school, same dreams. The beginning of our unbreakable bond in matching school uniforms and two braided plaits tied with ribbons.</p>
+          <div class="card-footer">
+            <span class="card-sticker">🌱✨</span>
+            <button type="button" class="btn-open-memory" data-chapter="1">Open Memory 💌</button>
+          </div>
+        </article>
+
+        <!-- Chapter 2 -->
+        <article class="scrapbook-card" data-chapter="2">
+          <div class="card-washi sage"></div>
+          <div class="card-photo-frame">
+            <img src="images/playground.png" alt="Our School Playground" loading="lazy">
+          </div>
+          <span class="card-badge c2">Chapter 02</span>
+          <h3 class="card-title">Our School Playground 🌼</h3>
+          <p class="card-desc">Sitting under the big shady banyan tree during lunch breaks, sharing lunchboxes, crazy plans, and laughter that echoed across the school yard.</p>
+          <div class="card-footer">
+            <span class="card-sticker">🌼🍃</span>
+            <button type="button" class="btn-open-memory" data-chapter="2">Open Memory 💌</button>
+          </div>
+        </article>
+
+        <!-- Chapter 3 -->
+        <article class="scrapbook-card" data-chapter="3">
+          <div class="card-washi blue"></div>
+          <div class="card-photo-frame">
+            <img src="images/wall_heart.png" alt="Classroom Secrets & Wall Heart" loading="lazy">
+          </div>
+          <span class="card-badge c3">Chapter 03</span>
+          <h3 class="card-title">Classroom Secrets & Bench Carvings 📚</h3>
+          <p class="card-desc">Carving 'Rifana, Vino, Keerthi ♡ RKV' on our wooden desks and drawing the heart on the classroom wall: 'Not just classmates... But sisters ♡'.</p>
+          <div class="card-footer">
+            <span class="card-sticker">📚✏️</span>
+            <button type="button" class="btn-open-memory" data-chapter="3">Open Memory 💌</button>
+          </div>
+        </article>
+
+        <!-- Chapter 4 -->
+        <article class="scrapbook-card" data-chapter="4">
+          <div class="card-washi peach"></div>
+          <div class="card-photo-frame">
+            <img src="images/teacher-moment.png" alt="Oops, Teacher Saw Us!" loading="lazy">
+          </div>
+          <span class="card-badge c4">Chapter 04</span>
+          <h3 class="card-title">Oops, Teacher Saw Us! 🤭</h3>
+          <p class="card-desc">Trying desperately not to burst into uncontrollable giggles when the teacher suddenly turned towards our bench! Hands over mouths and teary eyes.</p>
+          <div class="card-footer">
+            <span class="card-sticker">🤭🤫</span>
+            <button type="button" class="btn-open-memory" data-chapter="4">Open Memory 💌</button>
+          </div>
+        </article>
+
+        <!-- Chapter 5 -->
+        <article class="scrapbook-card" data-chapter="5">
+          <div class="card-washi yellow"></div>
+          <div class="card-photo-frame">
+            <img src="images/videocall.png" alt="After 12th — Different Colleges, Same Bond" loading="lazy">
+          </div>
+          <span class="card-badge c5">Chapter 05</span>
+          <h3 class="card-title">After 12th — Different Colleges, Same Bond 💌</h3>
+          <p class="card-desc">New chapter, new dreams! Keeping our bond alive with video calls, endless WhatsApp audio notes, canteen treats, and lifelong love!</p>
+          <div class="card-footer">
+            <span class="card-sticker">💌📱</span>
+            <button type="button" class="btn-open-memory" data-chapter="5">Open Memory 💌</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 8: SCHOOL DAYS — OUR INSEPARABLE GANG 🏫
+       ======================================================================== -->
+  <section id="schooldays" class="schooldays-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">🏫 Our Inseparable Gang</span>
+        <h2>Our Little School Universe 🏫</h2>
+        <p>Our smiling gang in matching school uniforms, two braided plaits tied with ribbons, and hearts that beat as one.</p>
+      </div>
+
+      <div class="friends-grid">
+        <!-- 1. Keerthana -->
+        <div class="friend-card" data-friend="1">
+          <div class="friend-photo">
+            <img src="images/friend1.png" alt="Keerthana" loading="lazy">
+          </div>
+          <h3 class="friend-name">Keerthana 🌸</h3>
+          <div class="friend-nickname" contenteditable="true" title="Click to edit nickname">“Keerthi ♡ AIML Techie”</div>
+          <div class="friend-memory-box" contenteditable="true" title="Click to edit favourite memory">
+            IFET College of Engineering (B.Tech AIML) — The creative heart of our gang, full of bright ideas, endless laughter, and warm care for everyone!
+          </div>
+          <button type="button" class="btn-open-memory" data-friend="1">Open Memory 🌸</button>
+        </div>
+
+        <!-- 2. Vinothini -->
+        <div class="friend-card" data-friend="2">
+          <div class="friend-photo">
+            <img src="images/friend2.png" alt="Vinothini" loading="lazy">
+          </div>
+          <h3 class="friend-name">Vinothini (Vino) 🌷</h3>
+          <div class="friend-nickname" contenteditable="true" title="Click to edit nickname">“Vino ♡ Sunshine Smile”</div>
+          <div class="friend-memory-box" contenteditable="true" title="Click to edit favourite memory">
+            IFET College of Engineering (B.Tech AIML) — The bundle of unstoppable cheer! Laughing until her stomach hurts, sharing notes, and keeping our spirits high.
+          </div>
+          <button type="button" class="btn-open-memory" data-friend="2">Open Memory 🌷</button>
+        </div>
+
+        <!-- 3. Rifana -->
+        <div class="friend-card" data-friend="3">
+          <div class="friend-photo">
+            <img src="images/friend3.png" alt="Rifana" loading="lazy">
+          </div>
+          <h3 class="friend-name">Rifana 🌼</h3>
+          <div class="friend-nickname" contenteditable="true" title="Click to edit nickname">“Rifu ♡ Sweet Soul Sister”</div>
+          <div class="friend-memory-box" contenteditable="true" title="Click to edit favourite memory">
+            Thevanaiyammal Women's College — Distance means nothing when hearts are connected! Always joining every video call, sharing secrets, and caring deeply.
+          </div>
+          <button type="button" class="btn-open-memory" data-friend="3">Open Memory 🌼</button>
+        </div>
+
+        <!-- 4. Kavipriya -->
+        <div class="friend-card" data-friend="4">
+          <div class="friend-photo">
+            <img src="images/friend4.png" alt="Kavipriya" loading="lazy">
+          </div>
+          <h3 class="friend-name">Kavipriya 💗</h3>
+          <div class="friend-nickname" contenteditable="true" title="Click to edit nickname">“Kavipriya ♡ Tech Companion”</div>
+          <div class="friend-memory-box" contenteditable="true" title="Click to edit favourite memory">
+            IFET College of Engineering (B.Tech AIML) — Sharing code, canteen treats, library study sessions, and making college days so joyful and memorable!
+          </div>
+          <button type="button" class="btn-open-memory" data-friend="4">Open Memory 💗</button>
+        </div>
+
+        <!-- 5. Vaithee -->
+        <div class="friend-card" data-friend="5">
+          <div class="friend-photo">
+            <img src="images/friend5.png" alt="Vaithee" loading="lazy">
+          </div>
+          <h3 class="friend-name">Vaithee 🌻</h3>
+          <div class="friend-nickname" contenteditable="true" title="Click to edit nickname">“Vaithee ♡ The Pure Heart”</div>
+          <div class="friend-memory-box" contenteditable="true" title="Click to edit favourite memory">
+            The sweetest friend who brings calm and positive vibes wherever she goes! Honest, caring, and an irreplaceable pillar of our bond.
+          </div>
+          <button type="button" class="btn-open-memory" data-friend="5">Open Memory 🌻</button>
+        </div>
+
+        <!-- 6. Subiii -->
+        <div class="friend-card" data-friend="6">
+          <div class="friend-photo">
+            <img src="images/friend6.png" alt="Subiii" loading="lazy">
+          </div>
+          <h3 class="friend-name">Subiii 🌺</h3>
+          <div class="friend-nickname" contenteditable="true" title="Click to edit nickname">“Subiii ♡ The Cutest Energy”</div>
+          <div class="friend-memory-box" contenteditable="true" title="Click to edit favourite memory">
+            Full of cute expressions and sweet banter! Never fails to bring a smile to our faces during long school breaks and unforgettable hangouts.
+          </div>
+          <button type="button" class="btn-open-memory" data-friend="6">Open Memory 🌺</button>
+        </div>
+
+        <!-- 7. Kaviiii -->
+        <div class="friend-card" data-friend="7">
+          <div class="friend-photo">
+            <img src="images/friend7.png" alt="Kaviiii" loading="lazy">
+          </div>
+          <h3 class="friend-name">Kaviiii 🎀</h3>
+          <div class="friend-nickname" contenteditable="true" title="Click to edit nickname">“Kaviiii ♡ Darling Bestie”</div>
+          <div class="friend-memory-box" contenteditable="true" title="Click to edit favourite memory">
+            Our cherished sweetheart! Whether teasing, sharing snacks, or endless gossip sessions, school and college would never be the same without you.
+          </div>
+          <button type="button" class="btn-open-memory" data-friend="7">Open Memory 🎀</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 9: INTERACTIVE MEMORY GALLERY 📸 (POLAROID STYLE)
+       ======================================================================== -->
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">📸 Polaroid Gallery</span>
+        <h2>Little Moments, Forever Treasured 📸</h2>
+        <p>A tiny collection of moments that will always have a place in our hearts.</p>
+      </div>
+
+      <!-- Category Filter Buttons -->
+      <div class="gallery-filters" role="tablist" aria-label="Filter gallery memories">
+        <button type="button" class="filter-btn active" data-filter="all">All Memories</button>
+        <button type="button" class="filter-btn" data-filter="playground">Playground</button>
+        <button type="button" class="filter-btn" data-filter="classroom">Classroom</button>
+        <button type="button" class="filter-btn" data-filter="funny">Funny Moments</button>
+        <button type="button" class="filter-btn" data-filter="friendship">Friendship</button>
+      </div>
+
+      <!-- Polaroid Grid -->
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Item 1: Scrapbook master collage -->
+        <div class="polaroid-item" data-category="friendship" data-img="images/school-memories.png" data-caption="Good friends, good life, forever bond.">
+          <div class="polaroid-img-wrapper">
+            <img src="images/school-memories.png" alt="Master Friendship Scrapbook" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“Good friends, good life, forever bond.”</div>
+          <span class="polaroid-tag">#Scrapbook #SquadMemories</span>
+        </div>
+
+        <!-- Item 2: Group of school friends -->
+        <div class="polaroid-item" data-category="playground" data-img="images/group_school_friends.png" data-caption="More friends, More memories ♡">
+          <div class="polaroid-img-wrapper">
+            <img src="images/group_school_friends.png" alt="School friends group" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“More friends, More memories ♡”</div>
+          <span class="polaroid-tag">#SchoolUniform #OurSquad</span>
+        </div>
+
+        <!-- Item 3: Bestie vibes selfie -->
+        <div class="polaroid-item" data-category="funny" data-img="images/bestie_vibes.png" data-caption="Bestie vibes ♡ Forever smiling together">
+          <div class="polaroid-img-wrapper">
+            <img src="images/bestie_vibes.png" alt="Bestie vibes selfie" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“Bestie vibes ♡ Forever smiling together”</div>
+          <span class="polaroid-tag">#BestieVibes #SelfieTime</span>
+        </div>
+
+        <!-- Item 4: Heads resting together -->
+        <div class="polaroid-item" data-category="friendship" data-img="images/friends_heads_resting.png" data-caption="Same hearts + Different paths Still Together ♡">
+          <div class="polaroid-img-wrapper">
+            <img src="images/friends_heads_resting.png" alt="Friends resting heads together" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“Same hearts + Different paths Still Together ♡”</div>
+          <span class="polaroid-tag">#SistersForLife #PureBond</span>
+        </div>
+
+        <!-- Item 5: Classroom wall heart -->
+        <div class="polaroid-item" data-category="classroom" data-img="images/wall_heart.png" data-caption="Not just classmates... But sisters ♡">
+          <div class="polaroid-img-wrapper">
+            <img src="images/wall_heart.png" alt="Classroom Wall Heart" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“Not just classmates... But sisters ♡”</div>
+          <span class="polaroid-tag">#Classroom #WallHeart</span>
+        </div>
+
+        <!-- Item 6: Video call across colleges -->
+        <div class="polaroid-item" data-category="friendship" data-img="images/videocall.png" data-caption="Different Colleges... Same Dreams... Forever Friends ♡">
+          <div class="polaroid-img-wrapper">
+            <img src="images/videocall.png" alt="Video Call" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“Different Colleges... Same Dreams... Forever Friends ♡”</div>
+          <span class="polaroid-tag">#VideoCall #NeverApart</span>
+        </div>
+
+        <!-- Item 7: ID badges at IFET -->
+        <div class="polaroid-item" data-category="classroom" data-img="images/id_badges.png" data-caption="Different Paths, Same Bond — IFET AIML Badges">
+          <div class="polaroid-img-wrapper">
+            <img src="images/id_badges.png" alt="IFET College ID Badges" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“Different Paths, Same Bond — IFET AIML Badges”</div>
+          <span class="polaroid-tag">#IFET #AIML #CollegeLife</span>
+        </div>
+
+        <!-- Item 8: Playground under tree -->
+        <div class="polaroid-item" data-category="playground" data-img="images/playground.png" data-caption="A little moment, a big memory.">
+          <div class="polaroid-img-wrapper">
+            <img src="images/playground.png" alt="School tree playground" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“A little moment, a big memory.”</div>
+          <span class="polaroid-tag">#Playground #UnderTheTree</span>
+        </div>
+
+        <!-- Item 9: Teacher moment -->
+        <div class="polaroid-item" data-category="funny" data-img="images/teacher-moment.png" data-caption="Our favourite place to laugh.">
+          <div class="polaroid-img-wrapper">
+            <img src="images/teacher-moment.png" alt="Oops teacher saw us" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“Our favourite place to laugh.”</div>
+          <span class="polaroid-tag">#FunnyMoments #CaughtGiggling</span>
+        </div>
+
+        <!-- Item 10: Canteen chat -->
+        <div class="polaroid-item" data-category="funny" data-img="images/canteen_chat.png" data-caption="Canteen Chats, Cravings & Crazy Plans">
+          <div class="polaroid-img-wrapper">
+            <img src="images/canteen_chat.png" alt="Canteen chats and treats" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“Canteen Chats, Cravings & Crazy Plans”</div>
+          <span class="polaroid-tag">#Canteen #CrazyTreats #FunTimes</span>
+        </div>
+
+        <!-- Item 11: Sunset garden -->
+        <div class="polaroid-item" data-category="friendship" data-img="images/sunset-friends.png" data-caption="The kind of happiness that stays.">
+          <div class="polaroid-img-wrapper">
+            <img src="images/sunset-friends.png" alt="Friends sunset in garden" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“The kind of happiness that stays.”</div>
+          <span class="polaroid-tag">#Sunset #ForeverOurs</span>
+        </div>
+
+        <!-- Item 12: Rooftop sunset view -->
+        <div class="polaroid-item" data-category="friendship" data-img="images/rooftop_sunset.png" data-caption="Many Hearts, One Friendship Forever ♡">
+          <div class="polaroid-img-wrapper">
+            <img src="images/rooftop_sunset.png" alt="Rooftop sunset view" loading="lazy">
+          </div>
+          <div class="polaroid-caption">“Many Hearts, One Friendship Forever ♡”</div>
+          <span class="polaroid-tag">#Sunset #GoldenHour #TrueSisters</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       LIGHTBOX MODAL 🔍
+       ======================================================================== -->
+  <div id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image Lightbox">
+    <div class="lightbox-content">
+      <button type="button" class="lightbox-close-btn" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
+      <button type="button" class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" aria-label="Previous Image">&#10094;</button>
+      <button type="button" class="lightbox-nav-btn lightbox-next" id="lightbox-next" aria-label="Next Image">&#10095;</button>
+
+      <div class="lightbox-img-box">
+        <img id="lightbox-img" src="" alt="Enlarged Memory">
+      </div>
+      <div class="lightbox-caption-text" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SECTION 10: FRIENDSHIP TIMELINE 🌷 (GARDEN PATH)
+       ======================================================================== -->
+  <section id="timeline" class="timeline-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">🌷 Garden Path</span>
+        <h2>A Story Made of Little Things 🌷</h2>
+        <p>Follow the stepping stones of our journey — from innocent hellos to lifelong sisters.</p>
+      </div>
+
+      <div class="timeline-path">
+        <!-- Entry 1 -->
+        <div class="timeline-item left">
+          <div class="timeline-flower-marker">🌱</div>
+          <div class="timeline-bubble">
+            <h3 class="timeline-title">The Beginning (11th Std)</h3>
+            <span class="timeline-date">Same school, same dreams</span>
+            <p class="timeline-desc">When our gang sat in the same classroom in matching uniforms and braided plaits, not knowing we were about to become each other's favorite humans.</p>
+          </div>
+        </div>
+
+        <!-- Entry 2 -->
+        <div class="timeline-item right">
+          <div class="timeline-flower-marker">🌼</div>
+          <div class="timeline-bubble">
+            <h3 class="timeline-title">Playground Adventures</h3>
+            <span class="timeline-date">Recess bell chimes</span>
+            <p class="timeline-desc">Running out the moment the bell rang, sharing tiffin boxes, exchanging stories, and sitting together under the big green trees.</p>
+          </div>
+        </div>
+
+        <!-- Entry 3 -->
+        <div class="timeline-item left">
+          <div class="timeline-flower-marker">📚</div>
+          <div class="timeline-bubble">
+            <h3 class="timeline-title">Classroom Memories & Carvings</h3>
+            <span class="timeline-date">Hidden behind notebooks</span>
+            <p class="timeline-desc">Carving names and hearts on our wooden desks, drawing messages on the classroom wall, and communicating using only eye contact across rows.</p>
+          </div>
+        </div>
+
+        <!-- Entry 4 -->
+        <div class="timeline-item right">
+          <div class="timeline-flower-marker">🤭</div>
+          <div class="timeline-bubble">
+            <h3 class="timeline-title">Laughing Until We Couldn’t</h3>
+            <span class="timeline-date">Silent laughter attacks</span>
+            <p class="timeline-desc">Those moments when someone cracked a joke in pin-drop silence and everyone had tears streaming down from holding back laughter!</p>
+          </div>
+        </div>
+
+        <!-- Entry 5 -->
+        <div class="timeline-item left">
+          <div class="timeline-flower-marker">✨</div>
+          <div class="timeline-bubble">
+            <h3 class="timeline-title">12th Done & New College Chapters</h3>
+            <span class="timeline-date">Growing up, still us</span>
+            <p class="timeline-desc">Transitioning into new colleges, different classrooms, but keeping our bond alive through phone video calls, warm hugs, and forever memories.</p>
+          </div>
+        </div>
+
+        <!-- Entry 6 -->
+        <div class="timeline-item right">
+          <div class="timeline-flower-marker">🌸</div>
+          <div class="timeline-bubble">
+            <h3 class="timeline-title">Our Story Continues…</h3>
+            <span class="timeline-date">Forever & Always</span>
+            <p class="timeline-desc">Because no matter where life leads each of us, this little world of ours will never change. Always us, sisters for life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 11: FRIENDSHIP LETTER 💌
+       ======================================================================== -->
+  <section id="friendship-letter" class="letter-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">💌 Heartfelt Letter</span>
+        <h2>No Matter Where Life Takes Us 💗</h2>
+        <p>A message written from the deepest corner of the heart.</p>
+      </div>
+
+      <div class="letter-envelope">
+        <div class="pressed-flower-tl">🌸</div>
+        <div class="pressed-flower-br">🌷</div>
+
+        <div class="letter-photo-strip">
+          <div class="letter-polaroid">
+            <img src="images/friendship.png" alt="Friends forever memory" loading="lazy">
+            <div class="letter-polaroid-caption">Sisters for Life, Forever Together ♡</div>
+          </div>
+        </div>
+
+        <div class="letter-body">
+          <p class="letter-salutation">To my favourite girls,</p>
+          <p>Some memories become special without us even realising it. The silly laughs, the little secrets, the classroom moments, the playground adventures, and the ordinary days that somehow became unforgettable.</p>
+          <p>We may grow, change, and follow different paths, but these memories will always be a little world of our own.</p>
+          <p>Thank you for being part of my story. If I could keep one little piece of childhood forever, it would be the moments we shared together.</p>
+          <p>Many hearts, countless little memories, one eternal friendship.</p>
+          <p style="font-weight: 700; color: var(--forest-green);">Always us. Sisters for life. 🌸</p>
+
+          <div class="letter-signature">
+            With love, from one of the gang ♡
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 12: FINAL INTERACTIVE FEATURE — “PROMISE TO KEEP” 🤝💗
+       ======================================================================== -->
+  <section id="promise" class="promise-section">
+    <div class="promise-overlay"></div>
+    <div class="container promise-container">
+      
+      <div class="promise-header">
+        <span class="section-badge" style="background: rgba(255,255,255,0.2); color: #FFF; border-color: rgba(255,255,255,0.4);">
+          🤝 Lifetime Bond
+        </span>
+        <h2>Before You Leave… One Little Promise? 🥹🌷</h2>
+        <p class="promise-intro-text">
+          “Namma friendship-la sandai varalaam, misunderstandings varalaam, life-la evlo changes vandhaalum… namma oruthara oruthar marandhuda koodaadhu di. 💗”
+        </p>
+      </div>
+
+      <!-- The Sacred Promise Card -->
+      <div class="promise-card" id="promise-card">
+        <h3 class="promise-card-title">Our Promise to Keep 🤝</h3>
+
+        <div class="promise-text-block">
+          <p>Whatever happens in life, let's promise to never leave one another alone when things get difficult.</p>
+          <p>Sandai vandhaalum pesi solve pannuvom. Misunderstanding vandhaalum oruthara oruthar purinjukka try pannuvom.</p>
+          <p>Yaarukkavadhu kashtam vandhaa, <span class="promise-highlight">‘naan irukken di’</span> nu solla oru friend-aavadhu pakkathula iruppom.</p>
+          <p>Happy moments-la mattum illa, difficult situations-layum orutharukku oruthar support-ah iruppom.</p>
+          <p>Namma ellaarum perfect-ah irukkanum nu avasiyam illa. Aana namma friendship-ku care, honesty, respect, and understanding kuduppom.</p>
+          <p>Life namma ellaaraiyum different paths-la kondu ponaalum, namma friendship-ai value panna marakka maattom.</p>
+          <p>No matter what life brings, let's choose kindness, keep communicating, and never stop caring for one another.</p>
+          <p class="promise-highlight" style="font-size: 1.2rem; text-align: center; margin-top: 20px;">
+            Always us. Always a little world of our own. Sisters for life. 🌸💗
+          </p>
+        </div>
+
+        <!-- Banner shown after clicking Promise -->
+        <div class="promise-accepted-banner" id="promise-accepted-banner">
+          <h4>Promise accepted! 🥹💗</h4>
+          <p>Indha promise-a vida mukkiyam namma orutharukku oruthar kaattura care dhaan. Whatever happens, let's keep choosing friendship. 🌷</p>
+          
+          <div class="glowing-hearts-row">
+            <span class="glow-heart" title="Keerthana">🌸</span>
+            <span class="glow-heart" title="Vinothini">🌷</span>
+            <span class="glow-heart" title="Rifana">🌼</span>
+            <span class="glow-heart" title="Kavipriya">💗</span>
+            <span class="glow-heart" title="Vaithee">🌻</span>
+            <span class="glow-heart" title="Subiii">🌺</span>
+            <span class="glow-heart" title="Kaviiii">🎀</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="promise-actions">
+        <button type="button" class="btn-primary" id="btn-make-promise" style="font-size: 1.35rem; padding: 18px 42px;">
+          <span>🤝 I Promise, Bestie 💗</span>
+        </button>
+        <a href="#gallery" class="btn-secondary" id="btn-back-gallery" style="background: rgba(255,255,255,0.9);">
+          <span>📸 Back to Our Memories</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CHAPTER / FRIEND MEMORY MODAL (EDITABLE SCRAPBOOK POPUP)
+       ======================================================================== -->
+  <div id="memory-modal" role="dialog" aria-modal="true" aria-label="Personal Memory Details">
+    <div class="memory-modal-box">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+      <img id="modal-img" class="modal-header-img" src="" alt="Memory Image">
+      <h3 class="modal-title" id="modal-title">Memory Title</h3>
+      <div class="modal-subtitle" id="modal-subtitle">Subtitle</div>
+      <div class="modal-body-text" id="modal-body">Description</div>
+
+      <!-- Personal Editable Memory Area -->
+      <div class="editable-memory-zone">
+        <label for="personal-note-input">✍️ Write a Personal Secret Memory Here (Auto-saved for you!):</label>
+        <textarea id="personal-note-input" class="memory-textarea" placeholder="Type a memory, inside joke, or message here..."></textarea>
+        <button type="button" class="btn-save-note" id="btn-save-note">Save This Memory ✨</button>
+        <span id="save-status" style="font-size: 0.85rem; color: var(--sage-dark); margin-left: 10px;"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SECTION 15: FOOTER 🌸
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-flower-art">🌸 ✨ 🌷 🌻 🌺 🎀</div>
+      <h2 class="footer-brand">Our Little World 🌸</h2>
+      <div class="footer-quote">“Made with love, laughter, and a little bit of magic.”</div>
+      <p class="footer-tagline">Best friends. One beautiful story. ♡</p>
+      
+      <div>
+        <a href="#home" class="back-to-top-btn" id="btn-back-to-top">
+          <span>↑ Back to the Top 🌸</span>
+        </a>
+      </div>
+
+      <div class="footer-bottom-credit">
+        Our Little World, Always. 🌸
+      </div>
+    </div>
+  </footer>
+
+  <!-- Master JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
